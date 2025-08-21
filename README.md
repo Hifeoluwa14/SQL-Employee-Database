@@ -23,7 +23,7 @@ Below are some SQL exercises solved using the Employees Database.
 
 1. Average Salary of Male and Female Employees in Each Department
 USE employees;
-
+```sql
 SELECT 
     d.dept_name, 
     e.gender, 
@@ -33,15 +33,19 @@ JOIN salaries s ON e.emp_no = s.emp_no
 JOIN dept_emp de ON de.emp_no = s.emp_no
 JOIN departments d ON d.dept_no = de.dept_no
 GROUP BY d.dept_name, e.gender;
+```
 
 2. Find the Lowest and Highest Department Numbers
+   ```sql
 -- Lowest department number
 SELECT MIN(dept_no) FROM dept_emp;
 
 -- Highest department number
 SELECT MAX(dept_no) FROM dept_emp;
+```
 
 3. Employee Department and Manager Assignment
+```sql
 SELECT 
     emp_no,
     MIN(dept_no) AS dept_no,
@@ -52,13 +56,16 @@ SELECT
 FROM dept_emp
 WHERE emp_no <= 10040
 GROUP BY emp_no;
-
+```
 4. Employees Hired in the Year 2000
+   ```sql
 SELECT emp_no, hire_date
 FROM employees
 WHERE YEAR(hire_date) = 2000;
+```
 
-5. Retrieve Employees by Title
+6. Retrieve Employees by Title
+```sql
 -- Engineers
 SELECT emp_no, title
 FROM titles
@@ -73,8 +80,10 @@ WHERE title = 'Senior Engineer';
 SELECT emp_no, title
 FROM titles
 WHERE title LIKE '%Engineer';
+```
 
 6. Procedure: Get Last Department an Employee Worked In
+```sql
 DELIMITER $$
 CREATE PROCEDURE emp_latest_department(IN p_emp_no INT)
 BEGIN
@@ -92,8 +101,9 @@ END $$
 DELIMITER ;
 
 CALL employees.emp_latest_department(10010);
-
+```
 7. Count Salary Contracts
+```sql
 -- Contracts longer than 1 year with salary >= 100,000
 SELECT COUNT(*)
 FROM salaries
@@ -104,9 +114,10 @@ SELECT COUNT(*)
 FROM salaries
 WHERE salary >= 100000
   AND TIMESTAMPDIFF(YEAR, from_date, to_date) > 1;
+```
 
 8. Trigger: Ensure hire_date ≤ Current Date
-COMMIT;
+```sql
 
 DELIMITER $$
 CREATE TRIGGER hire_date_check
@@ -118,10 +129,10 @@ BEGIN
     END IF;
 END $$
 DELIMITER ;
-
+```
 9. Functions for Employee Salaries
-
-Maximum Salary
+```sql
+# Maximum Salary
 
 DELIMITER $$
 CREATE FUNCTION max_salary(p_emp_no INT) 
@@ -139,7 +150,7 @@ DELIMITER ;
 SELECT employees.max_salary(11356);
 
 
-Minimum Salary
+# Minimum Salary
 
 DELIMITER $$
 CREATE FUNCTION min_salary(p_emp_no INT) 
@@ -157,7 +168,7 @@ DELIMITER ;
 SELECT employees.min_salary(11356);
 
 
-Min, Max, or Difference
+# Min, Max, or Difference
 
 DELIMITER $$
 CREATE FUNCTION employee_salary(p_emp_no INT, p_salary VARCHAR(255)) 
@@ -181,5 +192,7 @@ DELIMITER ;
 SELECT employees.employee_salary(11356, 'max');
 SELECT employees.employee_salary(11356, 'min');
 SELECT employees.employee_salary(11356, 'diff');
+
+```
 
 
