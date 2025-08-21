@@ -36,7 +36,7 @@ GROUP BY d.dept_name, e.gender;
 ```
 
 2. Find the Lowest and Highest Department Numbers
-   ```sql
+```sql
 -- Lowest department number
 SELECT MIN(dept_no) FROM dept_emp;
 
@@ -58,13 +58,13 @@ WHERE emp_no <= 10040
 GROUP BY emp_no;
 ```
 4. Employees Hired in the Year 2000
-   ```sql
+```sql
 SELECT emp_no, hire_date
 FROM employees
 WHERE YEAR(hire_date) = 2000;
 ```
 
-6. Retrieve Employees by Title
+5. Retrieve Employees by Title
 ```sql
 -- Engineers
 SELECT emp_no, title
