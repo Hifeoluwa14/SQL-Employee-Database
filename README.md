@@ -79,7 +79,7 @@ WHERE title = 'Senior Engineer';
 -- All Engineers using LIKE
 SELECT emp_no, title
 FROM titles
-WHERE title LIKE '%Engineer';
+WHERE title LIKE '%Engineer%';
 ```
 
 6. Procedure: Get Last Department an Employee Worked In
@@ -110,10 +110,6 @@ FROM salaries
 WHERE salary >= 100000
   AND DATEDIFF(to_date, from_date) > 365;
 
-SELECT COUNT(*)
-FROM salaries
-WHERE salary >= 100000
-  AND TIMESTAMPDIFF(YEAR, from_date, to_date) > 1;
 ```
 
 8. Trigger: Ensure hire_date ≤ Current Date
